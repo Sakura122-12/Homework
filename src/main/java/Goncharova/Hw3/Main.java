@@ -1,12 +1,14 @@
 package Goncharova.Hw3;
 
+import java.sql.SQLOutput;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
-        Game1();
+        //Game1();
+        Game2();
     }
 
     public static void Game1() {
@@ -55,9 +57,17 @@ public class Main {
         scanner.close();
     }
 
+
     public static String cmp(String origin, String userstr) {
         String Res = "";
-        for (int i = 0; i < origin.length(); i++) {
+        int l = 0;
+        if (origin.length() <= userstr.length()) {
+            l = origin.length();
+        } else {
+            l = userstr.length();
+        }
+
+        for (int i = 0; i < l; i++) {
             if (origin.charAt(i) == userstr.charAt(i)) {
                 Res += origin.charAt(i);
             }
@@ -65,12 +75,25 @@ public class Main {
                 Res += "#";
             }
         }
-        for (int i = origin.length(); i < 15; i++) {
+        for (int i = l; i < 15; i++) {
             Res += "#";
         }
         return Res;
     }
     public static void Game2() {
+        String[] words = {"apple", "orange", "lemon", "banana", "apricot", "avocado", "broccoli", "carrot", "cherry", "garlic", "grape", "melon", "leak", "kiwi", "mango", "mushroom", "nut", "olive", "pea", "peanut", "pear", "pepper", "pineapple", "pumpkin", "potato"};
+        String userAnswer = "";
+        Random random = new Random();
+        Scanner scanner = new Scanner(System.in);
+        int n = random.nextInt(words.length);
+
+        while (words[n].equals(userAnswer) == false) {
+            System.out.print("Введите слово: ->>");
+            userAnswer = scanner.nextLine();
+            System.out.println(cmp(words[n], userAnswer));
+
+        }
+        System.out.println("Поздравляем, Вы отгадали слово!");
 
     }
 }
