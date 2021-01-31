@@ -1,27 +1,32 @@
 package Goncharova.Hw3;
 
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
 
-   static Random random = new Random();
+    public static void main(String[] args) {
+        Game1();
+    }
+
+    public static boolean Game1() {
+        int number = 0;
+        int userAnswer = 0;
+        Random random = new Random();
+        Scanner scanner = new Scanner(System.in);
 
 
-   public static void main (String[] args) {
-      Game1();
-   }
+        number = random.nextInt(9);
+        System.out.println(number);
 
-   public static boolean Game1() {
-      int number = 0;
-      for(int i = 0; i < 3; i++){
-         number = random.nextInt(9);
-         System.out.println(number);
-      }
+        for (int i = 0; i < 3; i++) {
+
+            System.out.print("Введите число от 0 до 9: ->>");
+            userAnswer = scanner.nextInt();
+        }
 
 
-
-
-
-      return false;
-   }
+        scanner.close();
+        return false;
+    }
 }
