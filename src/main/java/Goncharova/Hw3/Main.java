@@ -13,19 +13,25 @@ public class Main {
         int number = 0;
         int userAnswer = 0;
         boolean inGame = true;
+        boolean correctAnswer = false;
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
 
 
         while (inGame == true) {
             number = random.nextInt(9);
-            System.out.println(number);
 
             for (int i = 0; i < 3; i++) {
 
-                System.out.print("Введите число от 0 до 9: ->>");
-                userAnswer = scanner.nextInt();
-
+                correctAnswer = false;
+                while (correctAnswer == false) {
+                    System.out.print("Введите число от 0 до 9: ->>");
+                    userAnswer = scanner.nextInt();
+                    correctAnswer = ((userAnswer <= 9) && (userAnswer >= 0));
+                    if (correctAnswer == false) {
+                        System.out.println("Введенное число не попадает в нужный диапазон");
+                    }
+                }
 
                 if (userAnswer == number) {
                     System.out.println("Поздравляем, Вы угадали!");
