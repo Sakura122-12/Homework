@@ -23,6 +23,19 @@ public class Main {
 
             System.out.print("Введите число от 0 до 9: ->>");
             userAnswer = scanner.nextInt();
+
+            if (userAnswer == number) {
+                System.out.println("Поздравляем, Вы угадали!");
+                break;
+            }
+            else {
+                if (userAnswer > number) {
+                    System.out.println("Указанное Вами число оказалось больше загаданного");
+                }
+                if (userAnswer < number) {
+                    System.out.println("Указанное Вами число оказалось меньше загаданного");
+                }
+            }
         }
 
 
