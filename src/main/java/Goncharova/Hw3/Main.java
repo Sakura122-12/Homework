@@ -54,4 +54,23 @@ public class Main {
 
         scanner.close();
     }
+
+    public static String cmp(String origin, String userstr) {
+        String Res = "";
+        for (int i = 0; i < origin.length(); i++) {
+            if (origin.charAt(i) == userstr.charAt(i)) {
+                Res += origin.charAt(i);
+            }
+            else {
+                Res += "#";
+            }
+        }
+        for (int i = origin.length(); i < 15; i++) {
+            Res += "#";
+        }
+        return Res;
+    }
+    public static void Game2() {
+
+    }
 }
