@@ -3,12 +3,15 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Player {
-    static char sym;
-    static boolean isComputer;
-    Player(char pSym) {
+    char sym;
+    boolean isComputer;
+    Scanner scanner = new Scanner(System.in);
+
+    Player(char pSym, boolean computer) {
         sym = pSym;
+        isComputer = computer;
     }
-    public static void turn(Field field) {
+    public void turn(Field field) {
         Random random = new Random();
 
         boolean turnEnd;
@@ -17,23 +20,24 @@ public class Player {
         if(isComputer) {
             turnEnd = false;
             while (!turnEnd) {
-                row = (byte) random.nextInt(3);
-                col = (byte) random.nextInt(3);
+                row = (byte) random.nextInt(field.size);
+                col = (byte) random.nextInt(field.size);
                 turnEnd = field.Setcell(row, col, sym);
             }
         }
         else {
-            Scanner scanner = new Scanner(System.in);
-
             turnEnd = false;
             while (!turnEnd) {
-                row = scanner.nextByte();
-                col = scanner.nextByte();
+                row = (byte)scanner.nextInt();
+                col = (byte)scanner.nextInt();
                 turnEnd = field.Setcell(row, col, sym);
+
+                if(!turnEnd) {
+                    System.out.println("Ячейка занята");
+                }
             }
 
-            scanner.close();
+//            scanner.close();
         }
-
     }
 }

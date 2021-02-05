@@ -4,10 +4,13 @@ import java.util.Random;
 
 public class Field {
 
-    static byte [][] field;
-    static byte size;
-    static byte criteria;
+    byte [][] field;
+    byte size;
+    byte criteria;
     Field(byte pSize, byte pCriteria) {
+
+        size = pSize;
+        criteria = pCriteria;
 
         //Создание поля
         field = new byte[size][];
@@ -20,30 +23,21 @@ public class Field {
                 field[y][x] = ' ';
             }
         }
-
-        size = pSize;
-        criteria = pCriteria;
     }
 
-    public static void main(String[] args) {
-
-//        boolean gameover = false;
-
-
-//
-//
-
-//
-//            print();
-//            System.out.println("--------------");
-//
-//            gameover = (!checkWin().equals("Не обнаружено"));
-//        }
-//        //print();
-//        System.out.println(checkWin());
+    public boolean emptyCellsAvailable() {
+        for (int y = 0; y < size; y++) {
+            for (int x = 0; x < size; x++) {
+                if(field[y][x] == ' ') {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
-    public static boolean Setcell(byte row, byte col, char sym) {
+
+    public boolean Setcell(byte row, byte col, char sym) {
         if (field[row][col] != ' ') {
             return false;
         }
@@ -51,7 +45,7 @@ public class Field {
         return true;
     }
 
-    public static void fillField() {
+    public void fillField() {
         Random random = new Random();
         for (int y = 0; y < size; y++) {
             for (int x = 0; x < size; x++) {
@@ -66,7 +60,7 @@ public class Field {
         }
     }
 
-    public static boolean checkLine(int sy, int sx, int dx, int dy, int stepcount) {
+    public boolean checkLine(int sy, int sx, int dx, int dy, int stepcount) {
         int x = sx;
         int y = sy;
         int sum = 0;
@@ -91,7 +85,7 @@ public class Field {
         return false;
     }
 
-    public static void print() {
+    public void print() {
         for (int y = 0; y < size; y++) {
             for (int x = 0; x < size; x++) {
                 System.out.print("|" + (char) field[y][x] + "|");
@@ -100,7 +94,7 @@ public class Field {
         }
     }
 
-    public static String checkWin() {
+    public String checkWin() {
         boolean res;
         //Строки
         for (byte i = 0; i < size; i++) {
@@ -122,7 +116,7 @@ public class Field {
         if (res) {
             return "Первая диагональ";
         }
-        res = checkLine(0, 2, -1, 1, size - 1);
+        res = checkLine(0, size - 1, -1, 1, size - 1);
         if (res) {
             return "Вторая диагональ";
         }
