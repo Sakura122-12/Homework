@@ -8,6 +8,7 @@ public class Field {
 
     static byte field[][];
     static byte size;
+    static byte criteria;
 
     public static void main(String[] args) {
         size = 3;
@@ -18,11 +19,9 @@ public class Field {
         boolean turnand = false;
         byte userRow = 0;
         byte userCol = 0;
+        criteria = 3;
 
         Scanner scanner = new Scanner(System.in);
-
-
-
 
 
         //2Dim Array Allocation
@@ -106,10 +105,10 @@ public class Field {
             x = x + dx;
             y = y + dy;
         }
-        if (sum == size) {
+        if (sum == criteria) {
             return true;
         }
-        if (sum == -size) {
+        if (sum == -criteria) {
             return true;
         }
         return false;
@@ -127,37 +126,26 @@ public class Field {
     public static String checkWin() {
         boolean res;
         //Строки
-        res = checkLine(0, 0, 1, 0, 2);
-        if (res == true) {
-            return "Первая строка";
-        }
-        res = checkLine(1, 0, 1, 0, 2);
-        if (res == true) {
-            return "Вторая строка";
-        }
-        res = checkLine(2, 0, 1, 0, 2);
-        if (res == true) {
-            return "Третья строка";
+        for (byte i = 0; i < size; i++) {
+            res = checkLine(i, 0, 1, 0, size - 1);
+            if (res == true) {
+                return "Первая строка";
+            }
         }
         //Столбцы
-        res = checkLine(0, 0, 0, 1, 2);
-        if (res == true) {
-            return "Первый столбец";
+        for (byte i = 0; i < size; i++) {
+            res = checkLine(0, i, 0, 1, size - 1);
+            if (res == true) {
+                return "Первый столбец";
+            }
         }
-        res = checkLine(0, 1, 0, 1, 2);
-        if (res == true) {
-            return "Второй столбец";
-        }
-        res = checkLine(0, 2, 0, 1, 2);
-        if (res == true) {
-            return "Третий столбец";
-        }
+
         //Диагонали
-        res = checkLine(0, 0, 1, 1, 2);
+        res = checkLine(0, 0, 1, 1, size - 1);
         if (res == true) {
             return "Первая диагональ";
         }
-        res = checkLine(0, 2, -1, 1, 2);
+        res = checkLine(0, 2, -1, 1, size - 1);
         if (res == true) {
             return "Вторая диагональ";
         }
