@@ -1,24 +1,21 @@
 package Goncharova.Hw3;
 
-import javax.crypto.spec.PSource;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Field {
 
-    static byte field[][];
+    static byte [][] field;
     static byte size;
     static byte criteria;
 
     public static void main(String[] args) {
         size = 3;
         boolean gameover = false;
-        byte row = 0;
-        byte col = 0;
+        byte row, col;
         Random random = new Random();
-        boolean turnand = false;
-        byte userRow = 0;
-        byte userCol = 0;
+        boolean turnEnd;
+        byte userRow, userCol;
         criteria = 3;
 
         Scanner scanner = new Scanner(System.in);
@@ -36,31 +33,29 @@ public class Field {
             }
         }
 
-        //------------------------------------
-
         //fillField();
-        while (gameover == false) {
-            turnand = false;
-            while (turnand == false) {
+        while (!gameover) {
+            turnEnd = false;
+            while (!turnEnd) {
                 row = (byte) random.nextInt(3);
                 col = (byte) random.nextInt(3);
-                turnand = Setcell(row, col, 'o');
+                turnEnd = Setcell(row, col, 'o');
             }
 
             print();
             System.out.println("--------------");
 
-            turnand = false;
-            while (turnand == false) {
+            turnEnd = false;
+            while (!turnEnd) {
                 userRow = scanner.nextByte();
                 userCol = scanner.nextByte();
-                turnand = Setcell(userRow, userCol, 'x');
+                turnEnd = Setcell(userRow, userCol, 'x');
             }
 
             print();
             System.out.println("--------------");
 
-            gameover = (checkWin() != "Не обнаружено");
+            gameover = (!checkWin().equals("Не обнаружено"));
         }
         //print();
         System.out.println(checkWin());
@@ -128,25 +123,25 @@ public class Field {
         //Строки
         for (byte i = 0; i < size; i++) {
             res = checkLine(i, 0, 1, 0, size - 1);
-            if (res == true) {
+            if (res) {
                 return "Первая строка";
             }
         }
         //Столбцы
         for (byte i = 0; i < size; i++) {
             res = checkLine(0, i, 0, 1, size - 1);
-            if (res == true) {
+            if (res) {
                 return "Первый столбец";
             }
         }
 
         //Диагонали
         res = checkLine(0, 0, 1, 1, size - 1);
-        if (res == true) {
+        if (res) {
             return "Первая диагональ";
         }
         res = checkLine(0, 2, -1, 1, size - 1);
-        if (res == true) {
+        if (res) {
             return "Вторая диагональ";
         }
         return "Не обнаружено";
