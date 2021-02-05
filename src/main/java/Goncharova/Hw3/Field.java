@@ -8,20 +8,9 @@ public class Field {
     static byte [][] field;
     static byte size;
     static byte criteria;
+    Field(byte pSize, byte pCriteria) {
 
-    public static void main(String[] args) {
-        size = 3;
-        boolean gameover = false;
-        byte row, col;
-        Random random = new Random();
-        boolean turnEnd;
-        byte userRow, userCol;
-        criteria = 3;
-
-        Scanner scanner = new Scanner(System.in);
-
-
-        //2Dim Array Allocation
+        //Создание поля
         field = new byte[size][];
         for (int i = 0; i < size; i++) {
             field[i] = new byte[size];
@@ -33,32 +22,50 @@ public class Field {
             }
         }
 
-        //fillField();
-        while (!gameover) {
-            turnEnd = false;
-            while (!turnEnd) {
-                row = (byte) random.nextInt(3);
-                col = (byte) random.nextInt(3);
-                turnEnd = Setcell(row, col, 'o');
-            }
+        size = pSize;
+        criteria = pCriteria;
+    }
 
-            print();
-            System.out.println("--------------");
-
-            turnEnd = false;
-            while (!turnEnd) {
-                userRow = scanner.nextByte();
-                userCol = scanner.nextByte();
-                turnEnd = Setcell(userRow, userCol, 'x');
-            }
-
-            print();
-            System.out.println("--------------");
-
-            gameover = (!checkWin().equals("Не обнаружено"));
-        }
-        //print();
-        System.out.println(checkWin());
+    public static void main(String[] args) {
+//        size = 3;
+//        boolean gameover = false;
+//        byte row, col;
+//        Random random = new Random();
+//        boolean turnEnd;
+//        byte userRow, userCol;
+//        criteria = 3;
+//
+//        Scanner scanner = new Scanner(System.in);
+//
+//
+//
+//
+//        //fillField();
+//        while (!gameover) {
+//            turnEnd = false;
+//            while (!turnEnd) {
+//                row = (byte) random.nextInt(3);
+//                col = (byte) random.nextInt(3);
+//                turnEnd = Setcell(row, col, 'o');
+//            }
+//
+//            print();
+//            System.out.println("--------------");
+//
+//            turnEnd = false;
+//            while (!turnEnd) {
+//                userRow = scanner.nextByte();
+//                userCol = scanner.nextByte();
+//                turnEnd = Setcell(userRow, userCol, 'x');
+//            }
+//
+//            print();
+//            System.out.println("--------------");
+//
+//            gameover = (!checkWin().equals("Не обнаружено"));
+//        }
+//        //print();
+//        System.out.println(checkWin());
     }
 
     public static boolean Setcell(byte row, byte col, char sym) {
