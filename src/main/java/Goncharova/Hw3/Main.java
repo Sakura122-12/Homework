@@ -1,5 +1,6 @@
 package Goncharova.Hw3;
 
+import java.util.Locale;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -89,6 +90,7 @@ public class Main {
         while (words[n].equals(userAnswer) == false) {
             System.out.print("Введите слово: ->>");
             userAnswer = scanner.nextLine();
+            userAnswer = userAnswer.toLowerCase(Locale.ROOT);
             System.out.println(cmp(words[n], userAnswer));
 
         }
