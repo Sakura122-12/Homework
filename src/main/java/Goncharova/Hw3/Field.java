@@ -1,7 +1,6 @@
 package Goncharova.Hw3;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class Field {
 
@@ -27,37 +26,13 @@ public class Field {
     }
 
     public static void main(String[] args) {
-//        size = 3;
+
 //        boolean gameover = false;
-//        byte row, col;
-//        Random random = new Random();
-//        boolean turnEnd;
-//        byte userRow, userCol;
-//        criteria = 3;
-//
-//        Scanner scanner = new Scanner(System.in);
+
+
 //
 //
-//
-//
-//        //fillField();
-//        while (!gameover) {
-//            turnEnd = false;
-//            while (!turnEnd) {
-//                row = (byte) random.nextInt(3);
-//                col = (byte) random.nextInt(3);
-//                turnEnd = Setcell(row, col, 'o');
-//            }
-//
-//            print();
-//            System.out.println("--------------");
-//
-//            turnEnd = false;
-//            while (!turnEnd) {
-//                userRow = scanner.nextByte();
-//                userCol = scanner.nextByte();
-//                turnEnd = Setcell(userRow, userCol, 'x');
-//            }
+
 //
 //            print();
 //            System.out.println("--------------");
