@@ -1,55 +1,36 @@
 package Goncharova.Hw3;
 
-import java.util.Locale;
-import java.util.Random;
-import java.util.Scanner;
-
 public class Main {
 
     public static void main(String[] args) {
-        //Game1();
-        //Game2();
-        Player computer = new Player('x', true);
-        Player human = new Player('o', false);
-        Field field = new Field((byte) 5, (byte) 4);
 
-        boolean gameover = false;
+        Cat cat = new Cat("Мурзик", false);
+        Cat cat1 = new Cat("Маркиз", true);
+        Dog dog = new Dog("Коржик");
+        Dog dog1 = new Dog("Джек");
 
-        while (!gameover) {
-            System.out.println("---Ход компьютера---");
-            computer.turn(field);
-            field.print();
-            System.out.println("--------------");
+        cat.run(160);
+        cat.swim(4);
+        cat1.run(201);
+        cat1.swim(5);
 
-            gameover = (!field.checkWin().equals("Не обнаружено"));
+        dog.run(10);
+        dog.swim(9);
+        dog1.run(501);
+        dog1.swim(11);
 
-            if (gameover) {
-                System.out.println("Выиграл компьютер!");
-                return;
-            }
+//        Exployer[] persArray = new Exployer[5]; // Вначале объявляем массив объектов
+//        persArray[0] = new Exployer("Дмитрий", "Программист", "dmitriy@gmail.com", "89991234567", 30000, 37); // потом для каждой ячейки массива задаем объект
+//        persArray[1] = new Exployer("Алексей", "Лаборант", "alex@gmail.com", "8999345543", 2500, 30);
+//        persArray[2] = new Exployer("Владислав", "Тестировщик", "vlad@gmail.com", "899934565", 3000, 42);
+//        persArray[3] = new Exployer("Марк", "Инженер", "mark@gmail.com", "899934111", 2700, 28);
+//        persArray[4] = new Exployer("Владимир", "Директор", "vladimir@gmail.com", "89995354", 4000, 42);
+//
+//        for (int i = 0; i < persArray.length; i++) {
+//            if (persArray[i].getAge() > 40) {
+//                persArray[i].info();
+//            }
+//        }
 
-            if (!field.emptyCellsAvailable()) {
-                System.out.println("Нет свободных ячеек");
-                return;
-            }
-
-            System.out.println("---Ход человека---");
-            System.out.println("Введите номер строки и столбца через пробел:");
-            human.turn(field);
-            field.print();
-            System.out.println("--------------");
-
-            gameover = (!field.checkWin().equals("Не обнаружено"));
-
-            if (gameover) {
-                System.out.println("Выиграл человек!");
-                return;
-            }
-
-            if (!field.emptyCellsAvailable()) {
-                System.out.println("Нет свободных ячеек");
-                return;
-            }
-        }
     }
 }
