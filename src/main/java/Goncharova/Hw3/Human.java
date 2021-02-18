@@ -6,18 +6,19 @@ public class Human {
     private float maxHeight;
     private boolean valid;
 
-    Human(){
+    Human() {
         maxDistanse = 2000.0f;
         maxHeight = 1.0f;
     }
 
-    Human(float maxDistanse, float maxHeight){
+    Human(float maxDistanse, float maxHeight) {
         this.maxDistanse = maxDistanse;
         this.maxHeight = maxHeight;
 
     }
+
     public void run(float distanse) {
-        if(distanse <= maxDistanse) {
+        if (distanse <= maxDistanse) {
             System.out.println("Человек пробежал " + distanse + " метров");
         } else {
             System.out.println("Человек не может пробежать " + distanse + " метров");
@@ -27,7 +28,7 @@ public class Human {
     }
 
     public void jump(float height) {
-        if(height <= maxHeight) {
+        if (height <= maxHeight) {
             System.out.println("Человек прыгнул " + height + " метров");
         } else {
             System.out.println("Человек не может прыгнуть " + height + " метров");
@@ -37,6 +38,7 @@ public class Human {
     }
 
     public boolean getValidate() {
-            return valid;
+
+        return valid;
     }
 }
