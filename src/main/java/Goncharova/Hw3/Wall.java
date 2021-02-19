@@ -1,6 +1,6 @@
 package Goncharova.Hw3;
 
-public class Wall {
+public class Wall extends Obstacle{
 
     private float height;
     public float getHeight(){

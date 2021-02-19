@@ -1,6 +1,6 @@
 package Goncharova.Hw3;
 
-public class Treadmill {
+public class Treadmill extends Obstacle {
     private float distanse;
     public float getdDstanse(){
         return distanse;
