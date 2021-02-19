@@ -1,6 +1,6 @@
 package Goncharova.Hw3;
 
-public class Cat {
+public class Cat implements Overcomer {
 
     private float maxDistanse;
     private float maxHeight;
@@ -9,11 +9,13 @@ public class Cat {
     Cat() {
         maxDistanse = 20.0f;
         maxHeight = 0.5f;
+        valid = true;
     }
 
     Cat(float maxDistanse, float maxHeight) {
         this.maxDistanse = maxDistanse;
         this.maxHeight = maxHeight;
+        valid = true;
     }
 
     public void run(float distanse) {

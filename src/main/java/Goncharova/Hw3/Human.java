@@ -1,6 +1,6 @@
 package Goncharova.Hw3;
 
-public class Human {
+public class Human implements Overcomer {
 
     private float maxDistanse;
     private float maxHeight;
@@ -9,12 +9,13 @@ public class Human {
     Human() {
         maxDistanse = 2000.0f;
         maxHeight = 1.0f;
+        valid = true;
     }
 
     Human(float maxDistanse, float maxHeight) {
         this.maxDistanse = maxDistanse;
         this.maxHeight = maxHeight;
-
+        valid = true;
     }
 
     public void run(float distanse) {

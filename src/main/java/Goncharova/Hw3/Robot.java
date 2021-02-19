@@ -1,6 +1,6 @@
 package Goncharova.Hw3;
 
-public class Robot {
+public class Robot implements Overcomer{
 
     private float maxDistanse;
     private float maxHeight;
@@ -9,11 +9,13 @@ public class Robot {
     Robot(){
         maxDistanse = 9000.0f;
         maxHeight = 5000.f;
+        valid = true;
     }
 
     Robot(float maxDistanse, float maxHeight) {
         this.maxDistanse = maxDistanse;
         this.maxHeight = maxHeight;
+        valid = true;
     }
 
     public void run(float distanse) {
