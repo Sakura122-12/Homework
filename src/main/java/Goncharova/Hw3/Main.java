@@ -3,36 +3,36 @@ package Goncharova.Hw3;
 public class Main {
 
     public static void main(String[] args) {
+        String [][] array = new String[4][4];
+        array[0][0] = "5"; array[0][1] = "4"; array[0][2] = "3"; array[0][3] = "2";
+        array[1][0] = "f"; array[1][1] = "8"; array[1][2] = "9"; array[1][3] = "10";
+        array[2][0] = "11"; array[2][1] = "12"; array[2][2] = "13"; array[2][3] = "14";
+        array[3][0] = "15"; array[3][1] = "16"; array[3][2] = "17"; array[3][3] = "18";
 
-          Overcomer [] overcomers = new Overcomer[5];
-          Obstacle [] obstacles = new Obstacle[5];
+        try {
+            proccesArray(array);
+        } catch (MyArrayDataException e) {
+            System.out.println("Ошибка преобразования в строке " + e.getRow() + ", в столбце " + e.getCol());
 
-          overcomers[0] = new Cat(1, 1);
-          overcomers[1] = new Robot(700, 480);
-          overcomers[2] = new Human(500,2);
-          overcomers[3] = new Cat(3,2);
-          overcomers[4] = new Robot(900,500);
+        }
 
-          obstacles[0] = new Wall(1);
-          obstacles[1] = new Treadmill(300);
-          obstacles[2] = new Wall(400);
-          obstacles[3] = new Treadmill(2);
-          obstacles[4] = new Wall(500);
 
-          for (int i = 0; i < overcomers.length; i++) {
-              for (int n = 0; n < obstacles.length; n++) {
-                  if (obstacles[n].getClass() == Wall.class) {
-                      overcomers[i].jump(((Wall) obstacles[n]).getHeight());
-                  }
-                  if (obstacles[n].getClass() == Treadmill.class) {
-                      overcomers[i].run(((Treadmill) obstacles[n]).getdDstanse());
-                  }
+    }
 
-                  if (overcomers[i].getValidate() == false)
-                      break;
+    public static void proccesArray(String[][] array) {
+        for(int y = 0; y < 4; y++) {
+            for(int x = 0; x < 4; x++) {
+                try {
+                    int i = Integer.parseInt (array[y][x]);
+                } catch (NumberFormatException e) {
+                    MyArrayDataException exp = new MyArrayDataException(y,x);
+                    throw exp;
 
-              }
-          }
+                }
+            }
+
+
+        }
 
     }
 }
