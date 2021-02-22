@@ -42,6 +42,28 @@ public class Main {
         } catch (MyArraySizeException e) {
             System.out.println("Ошибка размера");
         }
+        array[0][0] = "5";
+        array[0][1] = "4";
+        array[0][2] = "3";
+        array[0][3] = "2";
+        array[1][0] = "9";
+        array[1][1] = "8";
+        array[1][2] = "9";
+        array[1][3] = "10";
+        array[2][0] = "11";
+        array[2][1] = "12";
+        array[2][2] = "13";
+        array[2][3] = "14";
+        array[3][0] = "15";
+        array[3][1] = "16";
+        array[3][2] = "17";
+        array[3][3] = "18";
+        try {
+            int res = proccesArray(array);
+            System.out.println("Сумма массива равна "+ res);
+        } catch (MyArraySizeException e) {
+            System.out.println("Ошибка размера");
+        }
 
     }
 
@@ -72,4 +94,5 @@ public class Main {
         }
         return sum;
     }
+
 }
