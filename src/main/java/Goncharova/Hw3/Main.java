@@ -45,7 +45,8 @@ public class Main {
 
     }
 
-    public static void proccesArray(String[][] array) throws MyArraySizeException {
+    public static int proccesArray(String[][] array) throws MyArraySizeException {
+        int sum = 0;
         if (array.length != 4) {
             MyArraySizeException exp = new MyArraySizeException();
             throw exp;
@@ -62,16 +63,13 @@ public class Main {
         for (int y = 0; y < 4; y++) {
             for (int x = 0; x < 4; x++) {
                 try {
-                    int i = Integer.parseInt(array[y][x]);
+                    sum += Integer.parseInt(array[y][x]);
                 } catch (NumberFormatException e) {
                     MyArrayDataException exp = new MyArrayDataException(y, x);
                     throw exp;
-
                 }
             }
-
-
         }
-
+        return sum;
     }
 }
