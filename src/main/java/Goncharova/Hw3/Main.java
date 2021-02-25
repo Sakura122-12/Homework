@@ -1,98 +1,51 @@
 package Goncharova.Hw3;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.Iterator;
+
 public class Main {
 
     public static void main(String[] args) {
-        String[][] array = new String[4][4];
-        array[0][0] = "5";
-        array[0][1] = "4";
-        array[0][2] = "3";
-        array[0][3] = "2";
-        array[1][0] = "f";
-        array[1][1] = "8";
-        array[1][2] = "9";
-        array[1][3] = "10";
-        array[2][0] = "11";
-        array[2][1] = "12";
-        array[2][2] = "13";
-        array[2][3] = "14";
-        array[3][0] = "15";
-        array[3][1] = "16";
-        array[3][2] = "17";
-        array[3][3] = "18";
+        HashMap<String, Integer> hm = new HashMap<>();
 
-        try {
-            proccesArray(array);
-        } catch (MyArrayDataException e) {
-            System.out.println("Ошибка преобразования в строке " + e.getRow() + ", в столбце " + e.getCol());
-        } catch (MyArraySizeException e) {
-            System.out.println("Ошибка размера");
-        }
 
-        String[][] arrayBadRowCount = new String[3][4];
-        try {
-            proccesArray(arrayBadRowCount);
+        ArrayList<String> arrayList = new ArrayList<>();
+        arrayList.add("Yellow");
+        arrayList.add("Blue");
+        arrayList.add("Black");
+        arrayList.add("Green");
+        arrayList.add("Blue");
+        arrayList.add("Red");
+        arrayList.add("White");
+        arrayList.add("Black");
+        arrayList.add("Yellow");
+        arrayList.add("Orange");
+        arrayList.add("Purple");
+        arrayList.add("Pink");
+        arrayList.add("Red");
 
-        } catch (MyArraySizeException e) {
-            System.out.println("Ошибка размера");
-        }
-        String[][] arrayBadColCount = new String[4][3];
-        try {
-            proccesArray(arrayBadColCount);
-        } catch (MyArraySizeException e) {
-            System.out.println("Ошибка размера");
-        }
-        array[0][0] = "5";
-        array[0][1] = "4";
-        array[0][2] = "3";
-        array[0][3] = "2";
-        array[1][0] = "9";
-        array[1][1] = "8";
-        array[1][2] = "9";
-        array[1][3] = "10";
-        array[2][0] = "11";
-        array[2][1] = "12";
-        array[2][2] = "13";
-        array[2][3] = "14";
-        array[3][0] = "15";
-        array[3][1] = "16";
-        array[3][2] = "17";
-        array[3][3] = "18";
-        try {
-            int res = proccesArray(array);
-            System.out.println("Сумма массива равна "+ res);
-        } catch (MyArraySizeException e) {
-            System.out.println("Ошибка размера");
-        }
+        Iterator<String> iter = arrayList.iterator();
+        while (iter.hasNext()) {
 
-    }
+            String currentValue = iter.next();
 
-    public static int proccesArray(String[][] array) throws MyArraySizeException {
-        int sum = 0;
-        if (array.length != 4) {
-            MyArraySizeException exp = new MyArraySizeException();
-            throw exp;
-        }
-
-        for(int i = 0; i < array.length;i++) {
-            if(array[i].length != 4) {
-                MyArraySizeException exp = new MyArraySizeException();
-                throw exp;
+            if (hm.containsKey(currentValue) == true) {
+                int n = hm.get(currentValue);
+                n = n + 1;
+                hm.put(currentValue, n);
+            } else {
+                hm.put(currentValue, 1);
             }
         }
-
-
-        for (int y = 0; y < 4; y++) {
-            for (int x = 0; x < 4; x++) {
-                try {
-                    sum += Integer.parseInt(array[y][x]);
-                } catch (NumberFormatException e) {
-                    MyArrayDataException exp = new MyArrayDataException(y, x);
-                    throw exp;
-                }
-            }
+        Iterator it = hm.entrySet().iterator();
+        System.out.println("Список уникальных значений");
+        while (it.hasNext()) {
+            System.out.println(it.next());
         }
-        return sum;
-    }
 
+
+    }
 }
