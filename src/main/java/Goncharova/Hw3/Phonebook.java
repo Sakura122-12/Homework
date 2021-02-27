@@ -10,6 +10,9 @@ public class Phonebook {
     public boolean add(String name, String phone) {
 
         if (book.containsKey(name) == true) {
+            if (book.get(name).contains(phone) == true) {
+                return false;
+            }
             book.get(name).add(phone);
         } else {
             LinkedList<String> phoneList = new LinkedList<>();
@@ -17,7 +20,7 @@ public class Phonebook {
             book.put(name, phoneList);
         }
 
-        return false;
+        return true;
     }
 
     public void print () {

@@ -68,7 +68,10 @@ public class Main {
                     System.out.println("Вы не ввели номер телефона");
                     continue;
                 }
-                book.add(name, phone);
+                boolean res = book.add(name, phone);
+                if (res == false) {
+                    System.out.println("Такой номер уже существует");
+                }
             }
 
             if (c == 2) {
