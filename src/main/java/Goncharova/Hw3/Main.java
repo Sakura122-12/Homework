@@ -8,7 +8,7 @@ public class Main {
     public static void main(String[] args) {
         HashMap<String, Integer> hm = new HashMap<>();
 
-
+        System.out.println("-----------------------Задание 1-----------------------");
         ArrayList<String> arrayList = new ArrayList<>();
         arrayList.add("Yellow");
         arrayList.add("Blue");
@@ -43,6 +43,8 @@ public class Main {
             System.out.println(it.next());
         }
 
+        System.out.println("-----------------------Задание 2-----------------------");
+
         Phonebook book = new Phonebook();
         String name, phone;
         Scanner scanner = new Scanner(System.in);
@@ -53,7 +55,12 @@ public class Main {
             System.out.println("1. Добавить запись в телефонную книгу");
             System.out.println("0. Выход");
             System.out.println("2. Получить номер по фамилии");
-            c = scanner.nextInt();
+            try {
+                c = scanner.nextInt();
+            } catch (Exception e) {
+                System.out.println("Вводите, пожалуйста, цифры");
+                continue;
+            }
             scanner.nextLine();
             if (c == 1) {
                 System.out.println("Введите фамилию");
