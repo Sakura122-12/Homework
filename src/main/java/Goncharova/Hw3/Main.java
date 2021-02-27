@@ -1,10 +1,7 @@
 package Goncharova.Hw3;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Iterator;
+import java.sql.SQLOutput;
+import java.util.*;
 
 public class Main {
 
@@ -46,6 +43,58 @@ public class Main {
             System.out.println(it.next());
         }
 
+        Phonebook book = new Phonebook();
+        String name, phone;
+        Scanner scanner = new Scanner(System.in);
+        int c = 0;
+        boolean out = false;
+        while (!out) {
+            System.out.println("Выберите действие:");
+            System.out.println("1. Добавить запись в телефонную книгу");
+            System.out.println("0. Выход");
+            System.out.println("2. Получить номер по фамилии");
+            c = scanner.nextInt();
+            scanner.nextLine();
+            if (c == 1) {
+                System.out.println("Введите фамилию");
+                name = scanner.nextLine();
+                if (name.isEmpty()) {
+                    System.out.println("Вы не ввели фамилию");
+                    continue;
+                }
+                System.out.println("Введите номер телефона");
+                phone = scanner.nextLine();
+                if (phone.isEmpty()) {
+                    System.out.println("Вы не ввели номер телефона");
+                    continue;
+                }
+                book.add(name, phone);
+            }
 
+            if (c == 2) {
+                System.out.println("Введите фамилию");
+                name = scanner.nextLine();
+                if (name.isEmpty()) {
+                    System.out.println("Вы не ввели фамилию");
+                    continue;
+                }
+
+                LinkedList<String> temp = book.get(name);
+                if (temp.isEmpty()) {
+                    System.out.println("Нет записей для такой фамилии");
+                } else {
+                    System.out.println("Список номеров для фамилии " + name);
+                    System.out.println(temp);
+                }
+            }
+
+            if (c == 0) {
+                out = true;
+            }
+        }
+        book.print();
+        scanner.close();
     }
+
+
 }
