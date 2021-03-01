@@ -11,6 +11,15 @@ public class Main {
         list.set(p1, temp);
     }
 
+    public static ArrayList<Object> convertToList(Object [] array) {
+        ArrayList<Object> list = new ArrayList<Object>();
+
+        for(int i = 0; i < array.length; i++) {
+            list.add(array[i]);
+        }
+
+        return list;
+    }
 
     public static void main(String[] args) {
         ArrayList<String> strList = new ArrayList<String>(Arrays.asList("AA", "BB", "CC", "DD", "EE"));
@@ -18,9 +27,9 @@ public class Main {
 
         change(intList, 1, 2);
         change(strList, 1, 2);
+
+        String [] array = {"A", "B", "C", "D", "E"};
+
+        ArrayList<Object> temp = convertToList(array);
     }
-
-
-
-
 }
