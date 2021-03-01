@@ -1,6 +1,5 @@
 package Goncharova.Hw3;
 
-import java.sql.SQLOutput;
 import java.util.*;
 
 public class Main {
@@ -12,7 +11,7 @@ public class Main {
     }
 
     public static ArrayList<Object> convertToList(Object [] array) {
-        ArrayList<Object> list = new ArrayList<Object>();
+        ArrayList<Object> list = new ArrayList<>();
 
         for(int i = 0; i < array.length; i++) {
             list.add(array[i]);
@@ -22,14 +21,34 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        ArrayList<String> strList = new ArrayList<String>(Arrays.asList("AA", "BB", "CC", "DD", "EE"));
-        ArrayList<Integer> intList = new ArrayList<Integer>(Arrays.asList(1, 2, 3, 4, 5));
+        ArrayList<String> strList = new ArrayList<>(Arrays.asList("AA", "BB", "CC", "DD", "EE"));
+        ArrayList<Integer> intList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
 
         change(intList, 1, 2);
         change(strList, 1, 2);
 
-        String [] array = {"A", "B", "C", "D", "E"};
+        String[] array = {"A", "B", "C", "D", "E"};
 
         ArrayList<Object> temp = convertToList(array);
+        temp.clear();
+
+        Box<Apple> appleBox = new Box<>(Apple.class);
+
+        appleBox.add(new Apple());
+        appleBox.add(new Apple());
+
+        Box<Orange> orangeBox = new Box<>(Orange.class);
+        orangeBox.add(new Orange());
+        orangeBox.add(new Orange());
+
+        boolean res = appleBox.compare(orangeBox);
+
+        appleBox.move(orangeBox);
     }
+
+
+
+
+
+
 }
