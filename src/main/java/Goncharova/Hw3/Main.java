@@ -9,10 +9,10 @@ import java.util.concurrent.Future;
 
 public class Main {
 
-    static class MyRunnableClass implements Callable{
+    static class MyCallableClass implements Callable{
         float[] arr;
 
-        MyRunnableClass(float[] arr) {
+        MyCallableClass(float[] arr) {
             this.arr = arr;
         }
 
@@ -85,7 +85,7 @@ public class Main {
         Future<float []> [] res = new Future[numberOfParts];
 
         for(int i = 0; i < L.size(); i++){
-            MyRunnableClass thread = new MyRunnableClass(L.get(i));
+            MyCallableClass thread = new MyCallableClass(L.get(i));
             res[i] = executorService.submit(thread);
         }
 
@@ -119,7 +119,7 @@ public class Main {
         }
 
         createArray1(arr);
-        createArray2(arr, 4);
+        createArray2(arr, 2);
     }
 
 
