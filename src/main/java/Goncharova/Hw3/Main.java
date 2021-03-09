@@ -1,54 +1,126 @@
 package Goncharova.Hw3;
 
 import java.util.*;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
+
 
 public class Main {
 
-    public static <T> void change(ArrayList<T> list, int p1, int p2) {
-        T temp = list.get(p2);
-        list.set(p2, list.get(p1));
-        list.set(p1, temp);
-    }
+    static class MyRunnableClass implements Callable{
+        float[] arr;
 
-    public static ArrayList<Object> convertToList(Object [] array) {
-        ArrayList<Object> list = new ArrayList<>();
-
-        for(int i = 0; i < array.length; i++) {
-            list.add(array[i]);
+        MyRunnableClass(float[] arr) {
+            this.arr = arr;
         }
 
-        return list;
+        @Override
+        public float [] call() {
+
+            long a = System.currentTimeMillis();
+
+            int i = 0;
+
+            for (i = 0; i < arr.length; i++) {
+                arr[i] = (float) (arr[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
+            }
+
+            System.out.println(System.currentTimeMillis() - a);
+
+            return arr;
+        }
+    }
+
+    static private ArrayList<float []> splitArray(float [] inputArray, int numberOfParts){
+        ArrayList<float []> L = new ArrayList<>();
+        int partSize = inputArray.length / numberOfParts;
+        int part = 0;
+
+        for(part = 0; part < (numberOfParts-1); part++) {
+
+            float [] temp = new float[partSize];
+            for(int c = 0; c < partSize; c++) {
+                temp[c] = inputArray[c + partSize*part];
+            }
+
+            L.add(temp);
+
+        }
+
+        float [] temp = new  float [inputArray.length - (part * partSize)];
+
+        for(int i = part*partSize, c = 0; i < inputArray.length; i++, c++) {
+            temp[c] = inputArray[i];
+        }
+
+        L.add(temp);
+
+        return L;
+    }
+
+    static private void createArray1(float [] arr) {
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = 1.0f;
+        }
+
+        long a = System.currentTimeMillis();
+
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = (float) (arr[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
+        }
+
+        System.out.println(System.currentTimeMillis() - a);
+
+    }
+
+    static private void createArray2(float [] arr, int numberOfParts) {
+
+        ExecutorService executorService = Executors.newFixedThreadPool(numberOfParts);
+
+        ArrayList<float []> L = splitArray(arr, numberOfParts);
+
+        Future<float []> [] res = new Future[numberOfParts];
+
+        for(int i = 0; i < L.size(); i++){
+            MyRunnableClass thread = new MyRunnableClass(L.get(i));
+            res[i] = executorService.submit(thread);
+        }
+
+        float [] resArr = new float[arr.length];
+        int pos = 0;
+
+        for(int i = 0; i < numberOfParts;i++) {
+
+            float[] temp;
+
+            try {
+                temp = res[0].get();
+            } catch (Exception e) {
+                System.out.println(e);
+                break;
+            }
+
+            System.arraycopy(temp, 0, resArr, pos, temp.length);
+            pos += temp.length;
+        }
     }
 
     public static void main(String[] args) {
-        ArrayList<String> strList = new ArrayList<>(Arrays.asList("AA", "BB", "CC", "DD", "EE"));
-        ArrayList<Integer> intList = new ArrayList<>(Arrays.asList(1, 2, 3, 4, 5));
 
-        change(intList, 1, 2);
-        change(strList, 1, 2);
+        final int size = 10000000;
+        final int half = size / 2;
+        float[] arr = new float[size];
 
-        String[] array = {"A", "B", "C", "D", "E"};
+        for (int i = 0; i < arr.length; i++) {
+            arr[i] = 1.0f;
+        }
 
-        ArrayList<Object> temp = convertToList(array);
-        temp.clear();
-
-        Box<Apple> appleBox = new Box<>(Apple.class);
-
-        appleBox.add(new Apple());
-        appleBox.add(new Apple());
-
-        Box<Orange> orangeBox = new Box<>(Orange.class);
-        orangeBox.add(new Orange());
-        orangeBox.add(new Orange());
-
-        boolean res = appleBox.compare(orangeBox);
-
-        appleBox.move(orangeBox);
+        createArray1(arr);
+        createArray2(arr, 4);
     }
-
-
-
-
 
 
 }
